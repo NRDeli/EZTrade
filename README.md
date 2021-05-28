@@ -1,0 +1,2 @@
+# EZTrade
+LEts start today!!
