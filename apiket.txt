@@ -1,0 +1,2 @@
+Vhcl75IoYr5JhVxiaYHArbQydrj0ax	<=API-key
+BiXE5D7gpAW0Wr3iQoTKp8lwHcNwIyyuscYhIzdKYL6lm  <= X-API-SECRET

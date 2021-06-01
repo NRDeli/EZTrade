@@ -16,6 +16,12 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.listen(8000, () => {
-    console.log("Listening on port 8000 . . .");
+app.post('/coin/', (req, res) => {
+    res.send(req.body);
+    //var name = req.body;
+    //res.render('info',name);
+});
+
+app.listen(3000, () => {
+    console.log("Listening on port 3000 . . .");
 });

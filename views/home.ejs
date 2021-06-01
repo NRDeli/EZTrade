@@ -1,7 +1,25 @@
 <%- include ("./partials/header.ejs")%>
     <link rel="stylesheet" href="./stylesheets/home.css">
+    <script src="./scripts/home.ejs"></script>
     <title>EZTrade</title>
+    <form action="/coin" method="POST">
+        <input class="form-control" list="datalistOptions" id="searchbar" placeholder="Type to search..." name="coin">
+        <datalist id="datalistOptions">
+            <option value="San Francisco">
+            <option value="New York">
+            <option value="Seattle">
+            <option value="Los Angeles">
+            <option value="Chicago">
+        </datalist>
+    </form>
     <a
         href="https://www.alphavantage.co/query?function=CRYPTO_INTRADAY&symbol=ETH&market=USD&interval=5min&apikey=CHQE0DE1ARC0CVW0">GO
         FOR RELIANCE
     </a>
+    <div class="container">
+
+        <div class="row">
+
+        </div>
+
+    </div>

@@ -43,5 +43,23 @@ Total Routes:
 
 
 
+HOME :
+cryptoIndex :card
+Graph :- initlally cryto index
+top 10 crypto graphs alltogether with cryptoIndex
+as we click on any cryptoCurrency say ethereum then we will display their graphigh
+Search Bar
+Navbar
+footer
+
+
+Myportfolio
+
+a pie chart with all your holdings
+
+
+Top news about crypto
+
+
 
 
