@@ -1,0 +1,47 @@
+Z6KH25TFLZ5KYNEY
+
+
+Portfolio manager
+Bookkeeping app
+So you enter the deets of your transactions 
+Daily, Weekly, Monthly, Yearly Reports --> Could send it to CA
+Watchlist with notification on email (+- [1,5]%)
+Sector-wise pie Charts
+Calculate dividend, profit, ...
+Charts using apis
+drawing tools ??
+Separate columns on report for Short-term capital gain & Long-term capital gain 
+% Allocation stockwise
+Midcap/smallcap/largecap--> color code these !
+Could be used for keeping a track of your BTCs too 
+A What if section
+Review section 
+-----------------------------------------------------------
+
+Home Page :
+
+Indices and their points
+No. of companies advanced and no. of companies declined
+Top gainers
+Top losers
+Highest Volume 
+52 week high
+52 week low
+Commodities
+
+Total Routes:
+    Home
+    Stocks last visited
+    My Watchlist
+    Portfolio
+    Stock details
+    index details
+    commodities details
+    About us
+    Reviews
+
+
+
+
+
+
