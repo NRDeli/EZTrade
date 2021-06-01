@@ -3,6 +3,8 @@ const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
 
+
+
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -17,9 +19,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/coin/', (req, res) => {
-    res.send(req.body);
-    //var name = req.body;
-    //res.render('info',name);
+    var name = req.body.coin;
+    res.render('info', { name: name });
 });
 
 app.listen(3000, () => {

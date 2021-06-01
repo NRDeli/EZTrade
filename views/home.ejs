@@ -1,25 +1,42 @@
 <%- include ("./partials/header.ejs")%>
     <link rel="stylesheet" href="./stylesheets/home.css">
-    <script src="./scripts/home.ejs"></script>
+    <script src="./scripts/home.js"></script>
     <title>EZTrade</title>
-    <form action="/coin" method="POST">
-        <input class="form-control" list="datalistOptions" id="searchbar" placeholder="Type to search..." name="coin">
-        <datalist id="datalistOptions">
-            <option value="San Francisco">
-            <option value="New York">
-            <option value="Seattle">
-            <option value="Los Angeles">
-            <option value="Chicago">
-        </datalist>
-    </form>
-    <a
-        href="https://www.alphavantage.co/query?function=CRYPTO_INTRADAY&symbol=ETH&market=USD&interval=5min&apikey=CHQE0DE1ARC0CVW0">GO
-        FOR RELIANCE
-    </a>
-    <div class="container">
+    <div class="container-fluid">
+        <div class="row mt-2">
+            <!--Non-Scrollable Sidebar-->
+            <aside class="col-lg-2">
+                Logo
 
-        <div class="row">
+            </aside>
+            <section class="col-lg-10">
+                <!--This Should Come All the Way Down-->
+                <nav class="row">
+                    <div class="col-11">
+                        <form action="/coin" method="POST">
+                            <input class="form-control" list="datalistOptions" placeholder="Type to search..."
+                                name="coin">
+                            <datalist id="datalistOptions">
+                                <option value="s"> San Francisco</option>
+                                <option>New York</option>
+                                <option>Seattle</option>
+                                <option>Los Angeles</option>
+                                <option>Chicago</option>
+                            </datalist>
+                        </form>
+                    </div>
+                    <div class="col-1">
+                        Some Icons
+                    </div>
+                </nav>
+                <!--This Should Be Scrollable-->
+                <main class="row">
 
+                    <a
+                        href="https://www.alphavantage.co/query?function=CRYPTO_INTRADAY&symbol=ETH&market=USD&interval=5min&apikey=CHQE0DE1ARC0CVW0">GO
+                        FOR RELIANCE
+                    </a>
+                </main>
+            </section>
         </div>
-
     </div>

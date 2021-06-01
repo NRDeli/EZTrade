@@ -44,8 +44,8 @@ Total Routes:
 
 
 HOME :
-cryptoIndex :card
-Graph :- initlally cryto index
+cryptoIndex : card
+Graph :- initlally cryto index (not available on vantage api figure out one for this)
 top 10 crypto graphs alltogether with cryptoIndex
 as we click on any cryptoCurrency say ethereum then we will display their graphigh
 Search Bar
