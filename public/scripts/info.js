@@ -47,12 +47,37 @@ function getapi() {
         }
     })
         .then(function (response) {
-            console.log(response.data.BLOCKFACTS['ETH-USD']['0']['price']);
-            console.log(response.data.BLOCKFACTS['ETH-USD']['0']['timestamp']);
+            let price = response.data.BLOCKFACTS['ETH-USD']['0']['price'];
+            console.log(price);
+            let timestamp = response.data.BLOCKFACTS['ETH-USD']['0']['timestamp'];
+            let timestamp1 = response.data.BLOCKFACTS['ETH-USD']['1']['timestamp'];
+            console.log(timestamp);
+            console.log(response.data.BLOCKFACTS);
+
+            var datevalues = getDateAndTime(timestamp);
+            console.log(datevalues);
+
+            var datevalues1 = getDateAndTime(timestamp1);
+            console.log(datevalues1);
 
         })
         .catch(function (e) {
             console.log(e);
 
         });
+}
+
+https://english.api.rakuten.net/crtyptodataAPI/api/crypto-asset-market-data-unified-apis-for-professionals?endpoint=apiendpoint_77e69644-232c-4a2c-9af6-4980c3f788de
+
+function getDateAndTime(timestamp) {
+    date = new Date(timestamp),
+        datevalues = [
+            date.getFullYear(),
+            date.getMonth() + 1,
+            date.getDate(),
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds(),
+        ];
+    return datevalues;
 }
