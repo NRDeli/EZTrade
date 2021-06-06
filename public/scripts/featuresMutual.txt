@@ -1,0 +1,41 @@
+AIM: INfo display of all mutual funds and corresponding stats
+   2) Portfolio
+    3) information about diferent types of mutual funds and learning resources (opt)
+
+    Procedure:
+    Home page :
+    Explore page : category vise Display eg. by company , (Explore page)
+        filters: refer api paramteres
+
+    Info page :will render via search Bar/explore page for particular mutual fund and its stats
+    Primary:
+        % change from yestreday's NAV price
+        vs category e.g. elss mid cap(via for loop)
+        Rank within category : pssbl (via absoluteReturns)
+
+        Radio buttons for direct and regular 
+        dividen and growth in the name itself
+
+    Secondary:
+        Top Ranked via money control
+        Risk-o-meter 
+        compare with Gold 
+                    Any index low feasilble
+        Analysis: Standard Deviation (Formula)
+
+
+
+Portfolio
+
+Things to dispaly : Mutual funds bought info : investment amt : current amt(will vary)
+Secondary:
+    our very own portfolio vs gold/indices chart
+    render info page on clicking any mutual fud you bought .
+     pie chart etc ..
+    Top performer : category wise , filters  for time span  1week , 1 day , 1 yr .
+     watchlist?:
+    
+
+
+
+
