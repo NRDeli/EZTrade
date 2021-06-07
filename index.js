@@ -21,6 +21,11 @@ app.post('/coin/', (req, res) => {
     res.render('info', { name: name });
 });
 
+app.get('/company/:id',(req,res)=>{
+    var company = req.params.id;
+    res.render('category',{ company: company })
+})
+
 app.listen(3000, () => {
     console.log("Listening on port 3000 . . .");
 });
