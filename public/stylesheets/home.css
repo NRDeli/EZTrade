@@ -4,3 +4,15 @@ scscriphtml{
 body{
     margin: 0;
 }
+
+#rowone{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#rowtwo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

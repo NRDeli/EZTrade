@@ -23,8 +23,6 @@ AIM: INfo display of all mutual funds and corresponding stats
                     Any index low feasilble
         Analysis: Standard Deviation (Formula)
 
-
-
 Portfolio
 
 Things to dispaly : Mutual funds bought info : investment amt : current amt(will vary)
@@ -34,8 +32,72 @@ Secondary:
      pie chart etc ..
     Top performer : category wise , filters  for time span  1week , 1 day , 1 yr .
      watchlist?:
+
+
+
+     ***********************************************************************
+     Select by Company names :
+0: "Aditya Birla Sun Life Mutual Fund"
+1: "Axis Mutual Fund"
+2: "BNP Paribas Mutual Fund"
+3: "BOI AXA Mutual Fund"
+4: "Baroda Mutual Fund"
+5: "Canara Robeco Mutual Fund"
+6: "DSP Mutual Fund"
+7: "Edelweiss Mutual Fund"
+8: "Franklin Templeton Mutual Fund"
+9: "HDFC Mutual Fund"
+10: "HSBC Mutual Fund"
+11: "ICICI Prudential Mutual Fund"
+12: "IDBI Mutual Fund"
+13: "IDFC Mutual Fund"
+14: "IIFCL Mutual Fund (IDF)"
+15: "IIFL Mutual Fund"
+16: "IL&FS Mutual Fund (IDF)"
+17: "ITI Mutual Fund"
+18: "Indiabulls Mutual Fund"
+19: "Invesco Mutual Fund"
+20: "JM Financial Mutual Fund"
+21: "Kotak Mahindra Mutual Fund"
+22: "L&T Mutual Fund"
+23: "LIC Mutual Fund"
+24: "Mahindra Manulife Mutual Fund"
+25: "Mirae Asset Mutual Fund"
+26: "Motilal Oswal Mutual Fund"
+27: "Navi Mutual Fund"
+28: "Nippon India Mutual Fund"
+29: "PGIM India Mutual Fund"
+30: "PPFAS Mutual Fund"
+31: "Principal Mutual Fund"
+32: "Quantum Mutual Fund"
+33: "SBI Mutual Fund"
+34: "Shriram Mutual Fund"
+35: "Sundaram Mutual Fund"
+36: "Tata Mutual Fund"
+37: "Taurus Mutual Fund"
+38: "Trust Mutual Fund"
+39: "UTI Mutual Fund"
+40: "Union Mutual Fund"
+41: "YES Mutual Fund"
+42: "quant Mutual Fund"
     
 
+
+
+
+Select by Scheme Types :
+
+0: "Close Ended Schemes"
+1: "Interval Fund Schemes"
+2: "Open Ended Schemes"
+
+
+
+
+
+
+
+Select by Scheme Names
 
 
 
