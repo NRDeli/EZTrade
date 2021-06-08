@@ -13,7 +13,7 @@ AIM: INfo display of all mutual funds and corresponding stats
         vs category e.g. elss mid cap(via for loop)
         Rank within category : pssbl (via absoluteReturns)
 
-        Radio buttons for direct and regular 
+        Radio buttons cfor direct and regular 
         dividen and growth in the name itself
 
     Secondary:

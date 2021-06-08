@@ -1,6 +1,5 @@
 <%- include ("./partials/header.ejs")%>
     <link rel="stylesheet" href="/stylesheets/home.css">
-    <script src="/scripts/home.js"></script>
     <title>EZTrade</title>
     <div class="container-fluid">
         <div class="row mt-2">
@@ -8,7 +7,6 @@
             <aside class="col-lg-2">
                 <!--Logo-->
                 Mutual funds are subject to market risks. Read all scheme realted documents carefully.
-
             </aside>
             <section class="col-lg-10">
                 <!--This Should Come All the Way Down-->
@@ -23,7 +21,6 @@
                                 <option>Seattle</option>
                                 <option>Los Angeles</option>
                                 <option>Chicago</option>
-
                             </datalist>
                         </form>
                     </div>
@@ -40,24 +37,52 @@
                             </div>
                         </section>
                         <section>
-                            <% for(let i=0;i<9;i++){ %>
+                            <% for(let i=0;i<2;i++){ %>
                                 <div class="row my-3 justify-content-evenly">
-                                <% for(let j=0;j<5;j++){ %>
-                                    <div class="col-2">
-                                        <div id="imgparent" class="card">
-                                            <img src="/logos/axis.jpg" class="card-img-top" alt="">
-                                            <div class="card-body">
-                                                <h6 class="card-title">Company Name</h5>
-                                                <a href="#" class="btn btn-primary">Know More</a>
+                                    <% for(let j=0;j<5;j++){ %>
+                                        <div class="col-2">
+                                            <div id="imgparent" class="card">
+                                                <img src="/logos/axis.jpg" class="card-img-top" alt="">
+                                                <div class="card-body">
+                                                    <h6 class="card-title">
+                                                        <%=companies[5*i+j]%>
+                                                    </h6>
+                                                    <button id="button_<%=5*i+j%>" value="<%= companies[5*i+j] %>"
+                                                        class="btn btn-primary">Button
+                                                        <%=5*i+j%>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <%}%>
+                                        <%}%>
                                 </div>
-                            <%}%>
+                                <%}%>
+                        </section>
+                        <section>
+                            <div class="row my-3 justify-content-evenly">
+                                <div class="col-2">
+                                    <div id="imgparent" class="card">
+                                        <img src="/logos/axis.jpg" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Company No 11</h6>
+                                            <button id="button_11" class="btn btn-primary"
+                                                onclick="expandandcollapse()">Button 11</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                    <div id="letsappendithere"></div>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <div id="cardgenerator" class="row my-3 justify-content-evenly">
+
+                            </div>
                         </section>
                     </div>
                 </main>
             </section>
         </div>
     </div>
+    <script src="/scripts/home.js"></script>
