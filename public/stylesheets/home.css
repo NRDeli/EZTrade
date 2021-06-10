@@ -5,6 +5,25 @@ body{
     margin: 0;
 }
 
-/* #link_10:active{
-    
-} */
+#moreinfo{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+#moreinfo::before, #moreinfo::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid black;
+}
+
+#moreinfo:not(:empty)::before{
+    margin-right: 0.25em;
+}
+
+#moreinfo:not(:empty)::after{
+    margin-right: 0.25em; 
+}
+
+
+

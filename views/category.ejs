@@ -2,23 +2,15 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <h1>HELLO</h1>
-
-    <p>
-        <%= typeof(schemes) %>
-    </p>
-    <!-- <p id="company">
-        <=companies%>
-    </p>
-    
-    <for(let i=0;i<200;i++){%>
-        <a id="scheme<=i%>" href="#">Scheme</a>
-        < } %> 
-
-    <ol id="mylist">
-        <for(let scheme of schemes){%>
-            <li>
-                <=scheme%>
-            </li>
-            <}%>-->
-    </ol>
-    <script src="/scripts/category.js"></script>
+    <% var schemeArr=schemes.split(','); for(let i=0;i<schemeArr.length;i++){
+        schemeArr[i]=schemeArr[i].replace("cxwo","&"); } %>
+        <ol>
+            <%for(let i=0;i<schemeArr.length;i++){ %>
+                <li>
+                    <button value="<%=schemeArr[i]%>" onclick="getapi(this.value)">
+                        <%=schemeArr[i]%>
+                    </button>
+                </li>
+                <%}%>
+        </ol>
+        <script src="/scripts/category.js"></script>

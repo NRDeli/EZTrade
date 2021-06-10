@@ -26,7 +26,7 @@
                         </form>
                     </div>
                     <div class="col-1">
-                        <i class="fa-solid fa-envelope"></i>
+                        Icons
                     </div>
                 </nav>
                 <!--This Should Be Scrollable-->
@@ -41,51 +41,9 @@
                             <% for(let i=0;i<2;i++){ %>
                                 <div class="row my-3 justify-content-evenly">
                                     <% for(let j=0;j<5;j++){ %>
-                                        <% if(i==1 && j==4){ %>
-                                            <div class="col-2">
-                                                <div id="card_9" class="card">
-                                                    <img>
-                                                    <div id="moreinfo">
-                                                        <h6 id="hidemeonclick">Wait, that's all you got? I need more
-                                                            companies.</h6>
-                                                        <p id="showmeonclick" class="visually-hidden">It's not like we
-                                                            were
-                                                            hiding them
-                                                            from you!</p>
-                                                        <button id="button_9" value="<%=companies[9]%>"
-                                                            class="btn btn-primary" onclick="expandandcollapse()">More
-                                                            Info</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <% } else { %>
-                                                <div class="col-2">
-                                                    <div id="card_<%=5*i+j%>" class="card">
-                                                        <img src="/logos/axis.jpg" class="card-img-top" alt="">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">
-                                                                <%=companies[5*i+j]%>
-                                                            </h6>
-                                                            <button id="button_<%=5*i+j%>"
-                                                                value="<%= companies[5*i+j] %>" class="btn btn-primary"
-                                                                onclick="getapi(this.value)">Button
-                                                                <%=5*i+j%>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <% } %>
-                                                    <%}%>
-                                </div>
-                                <%}%>
-                        </section>
-                        <section id="letsgetthispartystarted">
-                            <% for(let i=2;i<9;i++){ %>
-                                <div class="row my-3 justify-content-evenly">
-                                    <% for(let j=0;j<5;j++){ %>
                                         <div class="col-2">
-                                            <div id="card_<%=5*i+j%>" class="card visually-hidden">
-                                                <img src="/logos/axis.jpg" class="card-img-top" alt="">
+                                            <div id="card_<%=5*i+j%>" class="card">
+                                                <img src="/logos/<%=logos[5*i+j]%>" class="card-img-top" alt="">
                                                 <div class="card-body">
                                                     <h6 class="card-title">
                                                         <%=companies[5*i+j]%>
@@ -98,6 +56,34 @@
                                             </div>
                                         </div>
                                         <%}%>
+                                </div>
+                                <%}%>
+                        </section>
+                        <section id="moreinfo">
+                            <button class="btn btn-dark" id="moreinfobtn" onclick="expandandcollapse()">
+                                Show More
+                            </button>
+                        </section>
+                        <section id="letsgetthispartystarted">
+                            <% for(let i=2;i<9;i++){ %>
+                                <div class="row my-3 justify-content-evenly">
+                                    <% for(let j=0;j<5;j++){ %>
+                                        <%if(i==8&&j==3) break;%>
+                                            <div class="col-2">
+                                                <div id="card_<%=5*i+j%>" class="card visually-hidden">
+                                                    <img src="/logos/<%=logos[5*i+j]%>" class="card-img-top" alt="">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">
+                                                            <%=companies[5*i+j]%>
+                                                        </h6>
+                                                        <button id="button_<%=5*i+j%>" value="<%= companies[5*i+j] %>"
+                                                            class="btn btn-primary" onclick="getapi(this.value)">Button
+                                                            <%=5*i+j%>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <%}%>
                                 </div>
                                 <%}%>
                         </section>
