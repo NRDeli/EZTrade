@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
     ];
     const logos = ["adityabirla.png", "axis.jpg", "bnpparibas.png", "boiaxa.jpg", "baroda.png", "canararobeco.png",
         "dsp.png", "edelweiss.jpg", "franklintempleton.png", "hdfc.png", "hsbc.jpg", "icici.jpg", "idbi.jpg",
-        "idfc.jpg", "iifcl.jpg", "iifl.png", "il&fs.png", "iti.png", "indiabulls.png", "invesco.png",
+        "idfc.jpg", "iifcl.jpg", "iifl.png", "il&fs.jpg", "iti.png", "indiabulls.png", "invesco.png",
         "jmfinancial.png", "kotakmahindra.png", "l&t.png", "lic.png", "mahindramanulife.png", "miraeasset.jpg",
         "motilaloswal.png", "navi.png", "nipponindia.jpg", "pgim.jpg", "ppfas.jpg", "principal.png", "quant.jpg",
         "quantum.png", "sbi.png", "shriram.png", "sundaram.png", "tata.png", "taurus.jpg", "trust.png", "uti.png",
@@ -41,8 +41,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/info', async (req, res) => {
-    var scheme = await schemeInfo(req.query.scheme);
-    res.render('info', { scheme: scheme });
+    var sch = req.query.scheme;
+    var schemes = await schemeInfo(sch);
+    res.render('info', { schemes: schemes });
 
 });
 
@@ -57,36 +58,6 @@ app.listen(3000, () => {
     console.log("Listening on port 3000 . . .");
 });
 
-
-// function getapi(value) {
-//     axios.get('https://latest-mutual-fund-nav.p.rapidapi.com/fetchLatestNAV', {
-//         params: {
-//         //Date: '04-Jun-2021',     //2007 onwards
-//         // SchemeName: 'a',
-//         //SchemeCode:'127629',
-//          //SchemeType: 'Open Ended Schemes',
-//          MutualFundFamily: value.toString(),
-//         //SchemeCategory:"Open Ended Schemes ( Equity Scheme - Large & Mid Cap Fund )"
-//         },
-//         headers: {
-//             'x-rapidapi-key': 'c021a04ec2msh274866ae5d5f773p1d0d47jsn94fa2bd469a5',
-//             'x-rapidapi-host': 'latest-mutual-fund-nav.p.rapidapi.com'
-//         }
-//     })
-//         .then(function (response) {
-//              callback(response.data['0']["Scheme Name"]); 
-
-//         })
-//         .catch(function (e) {
-//             console.log(e);
-
-//         });
-// }
-
-
-// function callback(resp){
-
-// }
 
 
 
@@ -132,5 +103,48 @@ async function schemeInfo(value) {
             'x-rapidapi-host': 'latest-mutual-fund-nav.p.rapidapi.com'
         }
     });
-    return response.data['0']["Net Asset Value"];
+    var resp = response.data['0'];
+    var schemename = resp["Scheme Name"];
+    var schemecode = resp["Scheme Code"];
+    var nav = resp["Net Asset Value"];
+    var date = resp["Date"];
+    var schemecategory = resp["Scheme Category"];
+    var schemetype = resp["Scheme Type"];
+    var schemefamily = resp["Mutual Fund Family"];
+    var isingrowth = resp["ISIN Div Payout/ISIN Growth"];
+    var isinrein = resp["ISIN Div Reinvestment"];
+    var scheme = [schemename, schemecode, nav, date, schemecategory, schemetype, schemefamily, isingrowth, isinrein];
+    return scheme;
+
 }
+
+async function schemeHistory(date, value) {
+    const response = await axios.get('https://latest-mutual-fund-nav.p.rapidapi.com/fetchLatestNAV', {
+        params: {
+            //Date: '04-Jun-2021',     //2007 onwards
+            //SchemeName: value.toString(),
+            SchemeCode: value.toString(),
+            //SchemeType: 'Open Ended Schemes',
+            //MutualFundFamily: value.toString(),
+            //SchemeCategory:"Open Ended Schemes ( Equity Scheme - Large & Mid Cap Fund )"
+        },
+        headers: {
+            'x-rapidapi-key': 'c021a04ec2msh274866ae5d5f773p1d0d47jsn94fa2bd469a5',
+            'x-rapidapi-host': 'latest-mutual-fund-nav.p.rapidapi.com'
+        }
+    });
+    var resp = response.data['0'];
+    var schemename = resp["Scheme Name"];
+    var schemecode = resp["Scheme Code"];
+    var nav = resp["Net Asset Value"];
+    var date = resp["Date"];
+    var schemecategory = resp["Scheme Category"];
+    var schemetype = resp["Scheme Type"];
+    var schemefamily = resp["Mutual Fund Family"];
+    var isingrowth = resp["ISIN Div Payout/ISIN Growth"];
+    var isinrein = resp["ISIN Div Reinvestment"];
+    var scheme = [schemename, schemecode, nav, date, schemecategory, schemetype, schemefamily, isingrowth, isinrein];
+    return scheme;
+
+}
+
