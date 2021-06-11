@@ -45,8 +45,6 @@ function getapi(value) {
                     schemes.push(scheme);
                     schemecode.push(code);
                 }
-
-
             }
             window.location.href = "http://localhost:3000/company?scheme=" + schemes;
             //console.log(schemes);

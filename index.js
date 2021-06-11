@@ -33,6 +33,9 @@ app.get('/', (req, res) => {
         "quantum.png", "sbi.png", "shriram.png", "sundaram.png", "tata.png", "taurus.jpg", "trust.png", "uti.png",
         "union.png", "yes.png"
     ];
+    const slogans = [""
+
+    ]
     res.render('home', { companies: companies, logos: logos });
 });
 

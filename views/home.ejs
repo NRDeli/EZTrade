@@ -1,6 +1,5 @@
 <%- include ("./partials/header.ejs")%>
     <link rel="stylesheet" href="/stylesheets/home.css">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>EZTrade</title>
     <div class="container-fluid">
         <div class="row mt-2">
@@ -14,7 +13,7 @@
                 <nav class="row">
                     <div class="col-11">
                         <form action="/coin" method="POST">
-                            <input class="form-control" list="datalistOptions" placeholder="Type to search..."
+                            <input class="form-control" list="datalistOptions" placeholder="Type something here..."
                                 name="coin">
                             <datalist id="datalistOptions">
                                 <option value="s"> San Francisco</option>
@@ -26,7 +25,11 @@
                         </form>
                     </div>
                     <div class="col-1">
-                        Icons
+                        <span>
+                            <lord-icon src="https://cdn.lordicon.com/dxjqoygy.json" trigger="hover"
+                                colors="primary:#121331,secondary:#16a9c7" style="width:75px;height:75px">
+                            </lord-icon>
+                        </span>
                     </div>
                 </nav>
                 <!--This Should Be Scrollable-->
@@ -41,17 +44,37 @@
                             <% for(let i=0;i<2;i++){ %>
                                 <div class="row my-3 justify-content-evenly">
                                     <% for(let j=0;j<5;j++){ %>
-                                        <div class="col-2">
+                                        <div class="col-2 home-card">
                                             <div id="card_<%=5*i+j%>" class="card">
-                                                <img src="/logos/<%=logos[5*i+j]%>" class="card-img-top" alt="">
+                                                <img src="/logos/<%=logos[5*i+j]%>" class="card-img-top img-fluid"
+                                                    alt="<%=logos[5*i+j]%>'s logo">
                                                 <div class="card-body">
                                                     <h6 class="card-title">
                                                         <%=companies[5*i+j]%>
                                                     </h6>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                    </p>
                                                     <button id="button_<%=5*i+j%>" value="<%= companies[5*i+j] %>"
-                                                        class="btn btn-primary" onclick="getapi(this.value)">Button
-                                                        <%=5*i+j%>
+                                                        class="btn btn-primary" onclick="getapi(this.value)">Know more
                                                     </button>
+                                                </div>
+                                                <div class="container-fluid">
+                                                    <% for(let i=0;i<2;i++){ %>
+                                                        <div class="row justify-content-center">
+                                                            <% for(let j=0;j<3;j++){ %>
+                                                                <% if(i==1 && j==2) break; %>
+                                                                    <div class="col-4">
+                                                                        <lord-icon
+                                                                            src="https://cdn.lordicon.com/mdgrhyca.json"
+                                                                            trigger="click"
+                                                                            colors="primary:#121331,secondary:#08a88a"
+                                                                            style="width:32px;height:32px">
+                                                                        </lord-icon>
+                                                                    </div>
+                                                                    <% } %>
+                                                        </div>
+                                                        <% } %>
                                                 </div>
                                             </div>
                                         </div>
@@ -69,17 +92,38 @@
                                 <div class="row my-3 justify-content-evenly">
                                     <% for(let j=0;j<5;j++){ %>
                                         <%if(i==8&&j==3) break;%>
-                                            <div class="col-2">
+                                            <div class="col-2 home-card">
                                                 <div id="card_<%=5*i+j%>" class="card visually-hidden">
-                                                    <img src="/logos/<%=logos[5*i+j]%>" class="card-img-top" alt="">
+                                                    <img src="/logos/<%=logos[5*i+j]%>" class="card-img-top img-fluid"
+                                                        alt="<%=logos[5*i+j]%>'s logo">
                                                     <div class="card-body">
                                                         <h6 class="card-title">
                                                             <%=companies[5*i+j]%>
                                                         </h6>
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                        </p>
                                                         <button id="button_<%=5*i+j%>" value="<%= companies[5*i+j] %>"
-                                                            class="btn btn-primary" onclick="getapi(this.value)">Button
-                                                            <%=5*i+j%>
+                                                            class="btn btn-primary" onclick="getapi(this.value)">Know
+                                                            more
                                                         </button>
+                                                    </div>
+                                                    <div class="container-fluid">
+                                                        <% for(let i=0;i<2;i++){ %>
+                                                            <div class="row justify-content-center">
+                                                                <% for(let j=0;j<3;j++){ %>
+                                                                    <% if(i==1 && j==2) break; %>
+                                                                        <div class="col-4">
+                                                                            <lord-icon
+                                                                                src="https://cdn.lordicon.com/mdgrhyca.json"
+                                                                                trigger="click"
+                                                                                colors="primary:#121331,secondary:#08a88a"
+                                                                                style="width:32px;height:32px">
+                                                                            </lord-icon>
+                                                                        </div>
+                                                                        <% } %>
+                                                            </div>
+                                                            <% } %>
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,3 +137,4 @@
         </div>
     </div>
     <script src="/scripts/home.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
