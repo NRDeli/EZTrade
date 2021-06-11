@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
+const axios = require('axios');
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
@@ -39,16 +40,97 @@ app.get('/', (req, res) => {
     res.render('home', { companies: companies, logos: logos });
 });
 
-app.post('/coin/', (req, res) => {
-    var name = req.body.coin;
-    res.render('info', { name: name });
+app.get('/info', async (req, res) => {
+    var scheme = await schemeInfo(req.query.scheme);
+    res.render('info', { scheme: scheme });
+
 });
 
-app.get('/company/', (req, res) => {
-    var schemes = req.query.scheme;
+app.get('/company/', async (req, res) => {
+    var mf = req.query.mf;
+    var schemes = await axiosTest(mf);
+    //res.send(schemes);
     res.render('category', { schemes: schemes })
 })
 
 app.listen(3000, () => {
     console.log("Listening on port 3000 . . .");
 });
+
+
+// function getapi(value) {
+//     axios.get('https://latest-mutual-fund-nav.p.rapidapi.com/fetchLatestNAV', {
+//         params: {
+//         //Date: '04-Jun-2021',     //2007 onwards
+//         // SchemeName: 'a',
+//         //SchemeCode:'127629',
+//          //SchemeType: 'Open Ended Schemes',
+//          MutualFundFamily: value.toString(),
+//         //SchemeCategory:"Open Ended Schemes ( Equity Scheme - Large & Mid Cap Fund )"
+//         },
+//         headers: {
+//             'x-rapidapi-key': 'c021a04ec2msh274866ae5d5f773p1d0d47jsn94fa2bd469a5',
+//             'x-rapidapi-host': 'latest-mutual-fund-nav.p.rapidapi.com'
+//         }
+//     })
+//         .then(function (response) {
+//              callback(response.data['0']["Scheme Name"]); 
+
+//         })
+//         .catch(function (e) {
+//             console.log(e);
+
+//         });
+// }
+
+
+// function callback(resp){
+
+// }
+
+
+
+async function axiosTest(value) {
+    const response = await axios.get('https://latest-mutual-fund-nav.p.rapidapi.com/fetchLatestNAV', {
+        params: {
+            //Date: '04-Jun-2021',     //2007 onwards
+            // SchemeName: 'a',
+            //SchemeCode:'127629',
+            //SchemeType: 'Open Ended Schemes',
+            MutualFundFamily: value.toString(),
+            //SchemeCategory:"Open Ended Schemes ( Equity Scheme - Large & Mid Cap Fund )"
+        },
+        headers: {
+            'x-rapidapi-key': 'c021a04ec2msh274866ae5d5f773p1d0d47jsn94fa2bd469a5',
+            'x-rapidapi-host': 'latest-mutual-fund-nav.p.rapidapi.com'
+        }
+    });
+    var schemename = [];
+    var schemecode = []
+
+    for (let i = 0; i < response.data.length; i++) {
+        schemename[i] = response.data[i]["Scheme Name"];
+        schemecode[i] = response.data[i]["Scheme Code"];
+    }
+    var schemes = [schemename, schemecode];
+    return schemes;
+}
+
+
+async function schemeInfo(value) {
+    const response = await axios.get('https://latest-mutual-fund-nav.p.rapidapi.com/fetchLatestNAV', {
+        params: {
+            //Date: '04-Jun-2021',     //2007 onwards
+            //SchemeName: value.toString(),
+            SchemeCode: value.toString(),
+            //SchemeType: 'Open Ended Schemes',
+            //MutualFundFamily: value.toString(),
+            //SchemeCategory:"Open Ended Schemes ( Equity Scheme - Large & Mid Cap Fund )"
+        },
+        headers: {
+            'x-rapidapi-key': 'c021a04ec2msh274866ae5d5f773p1d0d47jsn94fa2bd469a5',
+            'x-rapidapi-host': 'latest-mutual-fund-nav.p.rapidapi.com'
+        }
+    });
+    return response.data['0']["Net Asset Value"];
+}

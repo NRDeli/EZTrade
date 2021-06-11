@@ -45,16 +45,19 @@
                                 <div class="row my-3 justify-content-evenly">
                                     <% for(let j=0;j<5;j++){ %>
                                         <div class="col-2 home-card">
-                                            <div id="card_<%=5*i+j%>" class="card">
-                                                <img src="/logos/<%=logos[5*i+j]%>" class="card-img-top img-fluid"
+                                            <div id="card_<%=5*i+j%>" class="card h-100 border-dark">
+                                                <img src="/logos/<%=logos[5*i+j]%>" class="card-img-top"
                                                     alt="<%=logos[5*i+j]%>'s logo">
                                                 <div class="card-body">
                                                     <h6 class="card-title">
                                                         <%=companies[5*i+j]%>
                                                     </h6>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                    </p>
+                                                    <blockquote class="px-0">
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                        </p>
+                                                    </blockquote>
+
                                                     <button id="button_<%=5*i+j%>" value="<%= companies[5*i+j] %>"
                                                         class="btn btn-primary" onclick="getapi(this.value)">Know more
                                                     </button>
@@ -80,6 +83,7 @@
                                         </div>
                                         <%}%>
                                 </div>
+                                <br>
                                 <%}%>
                         </section>
                         <section id="moreinfo">
@@ -94,15 +98,17 @@
                                         <%if(i==8&&j==3) break;%>
                                             <div class="col-2 home-card">
                                                 <div id="card_<%=5*i+j%>" class="card visually-hidden">
-                                                    <img src="/logos/<%=logos[5*i+j]%>" class="card-img-top img-fluid"
+                                                    <img src="/logos/<%=logos[5*i+j]%>" class="card-img-top"
                                                         alt="<%=logos[5*i+j]%>'s logo">
                                                     <div class="card-body">
                                                         <h6 class="card-title">
                                                             <%=companies[5*i+j]%>
                                                         </h6>
-                                                        <p>
-                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                        </p>
+                                                        <blockquote class="px-0">
+                                                            <p>
+                                                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                            </p>
+                                                        </blockquote>
                                                         <button id="button_<%=5*i+j%>" value="<%= companies[5*i+j] %>"
                                                             class="btn btn-primary" onclick="getapi(this.value)">Know
                                                             more
@@ -129,6 +135,7 @@
                                             </div>
                                             <%}%>
                                 </div>
+                                <br>
                                 <%}%>
                         </section>
                     </div>

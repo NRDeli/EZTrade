@@ -58,6 +58,20 @@ img.card-img-top{
   }
 
 
+blockquote p{
+    width: fit-content;
+    height: fit-content;
+}
+
+blockquote p::before {
+    content: '❝';
+}
+
+blockquote p::after {
+    content: '❞';
+}
+
+
 
 
 
