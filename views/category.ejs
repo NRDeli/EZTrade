@@ -1,20 +1,118 @@
 <%- include ("./partials/header.ejs")%>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+    <!--schemes[schemename, schemecode]-->
+    <!--Debt, Bond, Liquid-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <p> Total No of schemes:
+                    <%= schemes[1].length %>
+                </p>
+                <ol>
+                    <%for(let i=0;i<schemes[0].length;i++){ %>
+                        <li>
+                            <button value="<%=schemes[1][i]%>" onclick="getapi(this.value)">
+                                <%=schemes[0][i]%>
+                            </button>
+                        </li>
+                        <%}%>
+                </ol>
+            </div>
+            <% let fundoffunds=schemes[0].filter((fundoffund)=>{
+                return fundoffund.toLowerCase().includes('fund of funds');
+                });
+                let hybridschemes=schemes[0].filter((hybridscheme)=>{
+                return hybridscheme.toLowerCase().includes('hybrid');
+                });
+                let equityschemes=schemes[0].filter((equityscheme)=>{
+                return equityscheme.toLowerCase().includes('equity');
+                });
+                let filteredequityschemes=equityschemes.filter((filteredequityscheme)=>{
+                return !(filteredequityscheme.toLowerCase().includes('hybrid'));
+                });
 
-    <p>
-        <%= schemes[1].length %>
-    </p>
+                // let liquidschemes=schemes[0].filter((liquidscheme)=>{
+                // return liquidscheme.toLowerCase().includes('liquid');
+                // });
+                let debtschemes = schemes[0].filter((debtscheme)=>{
+                return debtscheme.toLowerCase().includes('debt');
+                });
+                // let bondschemes = schemes[0].filter((bondscheme)=>{
+                // return bondscheme.toLowerCase().includes('bond');
+                // });
 
-    <ol>
-        <%for(let i=0;i<schemes[0].length;i++){ %>
-            <li>
-                <button value="<%=schemes[1][i]%>" onclick="getapi(this.value)">
-                    <%=schemes[0][i]%>
-                </button>
-            </li>
-            <%}%>
-    </ol>
+                // myArray = myArray.filter( function( el ) {
+                // return toRemove.includes( el );
+                // } );
+
+
+
+                %>
+                <div class="col-6">
+
+                    <div class="row">
+                        <p>Schemes of type 'Fund of Funds' == <%=fundoffunds.length%>
+                        </p>
+                        <ol>
+                            <% for(let i=0;i<fundoffunds.length;i++) {%>
+                                <li>
+                                    <button>
+                                        <%=fundoffunds[i]%>
+                                    </button>
+                                </li>
+                                <% } %>
+                        </ol>
+                    </div>
+
+                    <div class="row">
+                        <p>Schemes of type 'Hybrid Schemes' == <%=hybridschemes.length%>
+                        </p>
+                        <ol>
+                            <% for(let i=0;i<hybridschemes.length;i++) {%>
+                                <li>
+                                    <button>
+                                        <%=hybridschemes[i]%>
+                                    </button>
+                                </li>
+                                <% } %>
+                        </ol>
+                    </div>
+
+                    <div class="row">
+                        <p>Schemes of type 'Equity' == <%=filteredequityschemes.length%>
+                        </p>
+                        <ol>
+                            <% for(let i=0;i<filteredequityschemes.length;i++) {%>
+                                <li>
+                                    <button>
+                                        <%=filteredequityschemes[i]%>
+                                    </button>
+                                </li>
+                                <% } %>
+                        </ol>
+                    </div>
+
+                    <div class="row">
+                        <p>Schemes of type 'Debt' == <%=debtschemes.length%>
+                        </p>
+                        <ol>
+                            <% for(let i=0;i<debtschemes.length;i++) {%>
+                                <li>
+                                    <button>
+                                        <%=debtschemes[i]%>
+                                    </button>
+                                </li>
+                                <% } %>
+                        </ol>
+                    </div>
+
+                    <p>
+                        Total Schemes found after applying filters =
+                    </p>
+                </div>
+        </div>
+    </div>
 
 
     <script src="/scripts/category.js"></script>

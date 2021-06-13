@@ -18,16 +18,17 @@ function expandandcollapse() {
 
 function summonsidebar() {
     document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('eztrade').classList.toggle('visually-hidden');
         document.getElementById('sidebar').classList.toggle('visually-hidden');
         document.getElementById('maincontent').classList.toggle('col-lg-10');
         document.getElementById('maincontent').classList.toggle('col-lg-12');
+
     });
     // document.getElementById('hamburger').addEventListener('dblclick', () => {
     //     document.getElementById('sidebar').classList.toggle('visually-hidden');
     //     document.getElementById('maincontent').classList.replace('col-lg-10', 'col-lg-12');
     // });
 }
-
 
 function getapi(value) {
     window.location.href = "http://localhost:3000/company?mf=" + value;

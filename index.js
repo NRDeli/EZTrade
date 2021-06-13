@@ -1,8 +1,13 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const users = require('./models/users')
+
+var mongoDB = 'mongodb://127.0.0.1/eztrade';
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
@@ -49,9 +54,16 @@ app.get('/info', async (req, res) => {
 
 app.get('/company/', async (req, res) => {
     var mf = req.query.mf;
-    var schemes = await axiosTest(mf);
+    var scheme = await axiosTest(mf);
+    var newschemes = scheme.filter(function (s) {
+        return !(s.includes('Regular'));
+    });
     //res.send(schemes);
-    res.render('category', { schemes: schemes })
+    res.render('category', { schemes: newschemes })
+})
+
+app.get('/portfolio/', (req, res) => {
+    res.render('portfolio', { users: users });
 })
 
 app.listen(3000, () => {
@@ -118,10 +130,35 @@ async function schemeInfo(value) {
 
 }
 
-async function schemeHistory(date, value) {
-    const response = await axios.get('https://latest-mutual-fund-nav.p.rapidapi.com/fetchLatestNAV', {
+async function schemeHistory(value) {
+
+    let d = new Date();
+    var mon = d.getMonth();
+    var date = d.getDate();
+    var year = d.getFullYear();
+
+    var month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
+
+    var dates = new Array();
+    //dates[0] = if()
+
+
+
+    const response = await axios.get('https://latest-mutual-fund-nav.p.rapidapi.com/fetchHistoricalNAV', {
         params: {
-            //Date: '04-Jun-2021',     //2007 onwards
+            //Date:      ,//2007 onwards
             //SchemeName: value.toString(),
             SchemeCode: value.toString(),
             //SchemeType: 'Open Ended Schemes',

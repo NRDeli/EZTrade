@@ -3,6 +3,12 @@ scscriphtml{
 }
 body{
     margin: 0;
+    background-image: url('/logos/money.jpg');
+    background-size: contain;
+}
+
+.card-body h5::selection, .card-body blockquote p::selection{
+    background-color: #5bc0de;
 }
 
 .card-footer{
@@ -11,14 +17,20 @@ body{
     align-self: center;
 }
 
+.card-footer .btn{
+    background-color: #14213d;
+    color: #e5e5e5;
+    font-weight: 600;
+}
+
 .card-footer .btn:active:hover{
     cursor: pointer;
 }
 
 .card-footer .btn:active{
-    background-color: #198754;
+    background-color: #000000;
     transition: background-color ease-in;
-    transform: scale(1.3,1.1);
+    transform: scale(1.4,1.1);
     box-shadow: none;
 }
 
@@ -26,8 +38,22 @@ img.card-img-top{
     background: fixed no-repeat center;
 }
 
+.col-2.home-card::selection{
+    background-color: #5bc0de;
+}
+
 .col-2.home-card:hover{
     transform: scale(1.1); 
+}
+
+#username{
+    font-family: 'Baloo Tammudu 2', cursive;
+    font-size: larger;
+}
+
+#profile{
+    background: none;
+    border: none;
 }
 
 #hamburger{
@@ -41,10 +67,19 @@ img.card-img-top{
     text-align: center;
 }
 
+#moreinfo button{
+    font-weight: 600;
+}
+
+#moreinfo button:active{
+    background-color: #000000;
+    color: white;
+}
+
 #moreinfo::before, #moreinfo::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid gray;
 }
 
 #moreinfo:not(:empty)::before{
@@ -67,7 +102,6 @@ img.card-img-top{
     scroll-behavior: smooth;
   }
 
-
 blockquote p{
     width: fit-content;
     height: fit-content;
@@ -80,6 +114,26 @@ blockquote p::before {
 blockquote p::after {
     content: '❞';
 }
+
+#quote {
+    align-self: center;
+    align-items: center;
+}
+
+#quotetext{
+    color:black;
+    font-weight: 400;
+}
+
+#quotetext::selection, #eztrade::selection{
+    background-color: #5bc0de;
+}
+
+#eztrade{
+    color:black;
+    font-weight:700;
+}
+
 
 
 

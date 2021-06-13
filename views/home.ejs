@@ -1,49 +1,73 @@
 <%- include ("./partials/header.ejs")%>
     <link rel="stylesheet" href="/stylesheets/home.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@500&display=swap" rel="stylesheet">
     <title>EZTrade</title>
     <div class="container-fluid">
         <div class="row">
             <!--Non-Scrollable Sidebar-->
-            <aside id="sidebar" class="col-lg-2 mt-2 visually-hidden">
-                <!-- Logo -->
-                Mutual funds are subject to market risks. Read all scheme realted documents carefully.
+            <aside id="sidebar" class="col-lg-2 visually-hidden bg-dark text-light fixed">
+                <span>
+                    <h1 class="mt-3">EZTrade</h1>
+                </span>
+                <p>
+                    Mutual funds are subject to market risks. Read all scheme realted documents carefully.
+                </p>
+                <br>
             </aside>
+            <!--This Should Come All the Way Down-->
             <section id="maincontent" class="col-lg-12">
-                <!--This Should Come All the Way Down-->
                 <nav class="row">
-                    <div class="col-1">
+                    <div class="col-2">
+                        <h1 id="eztrade">EZTrade</h1>
                         <span>
                             <button id="hamburger" onclick="summonsidebar()">
                                 <lord-icon src="https://cdn.lordicon.com/jvucoldz.json" trigger="hover"
-                                    colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px">
+                                    colors="primary:#ffffff,secondary:#000000" style=" width:75px;height:75px">
                                 </lord-icon>
                             </button>
                         </span>
                     </div>
-                    <div class="col-10 mt-2">
-                        <form action="/coin" method="POST">
-                            <input class="form-control" list="datalistOptions" placeholder="Type something here..."
-                                name="coin">
-                            <datalist id="datalistOptions">
-                                <option value="s"> San Francisco</option>
-                                <option>New York</option>
-                                <option>Seattle</option>
-                                <option>Los Angeles</option>
-                                <option>Chicago</option>
-                            </datalist>
-                        </form>
+                    <div class="col-8 mt-2">
+                        <div class="row">
+                            <form action="/coin" method="POST">
+                                <input class="form-control" list="datalistOptions" placeholder="Type something here..."
+                                    name="coin">
+                                <datalist id="datalistOptions">
+                                    <option value="s"> San Francisco</option>
+                                    <option>New York</option>
+                                    <option>Seattle</option>
+                                    <option>Los Angeles</option>
+                                    <option>Chicago</option>
+                                </datalist>
+                            </form>
+                        </div>
+                        <div id="quote" class="row">
+                            <blockquote>
+                                <p id="quotetext" class="display-6 text-center">
+                                    Mutual funds are subject to market risks. Read all scheme realted documents
+                                    carefully.
+                                </p>
+                            </blockquote>
+                        </div>
                     </div>
-                    <div class="col-1">
-                        <span>
-                            <lord-icon src="https://cdn.lordicon.com/dxjqoygy.json" trigger="hover"
-                                colors="primary:#121331,secondary:#16a9c7" style="width:75px;height:75px">
-                            </lord-icon>
-                        </span>
+                    <div class="col-2">
+                        <div>
+                            <span id="username">Username</span>
+                            <span>
+                                <button id="profile">
+                                    <lord-icon src="https://cdn.lordicon.com/dxjqoygy.json" trigger="hover"
+                                        colors="primary:#14213d,secondary:#f7f7f7" style="width:85px;height:85px">
+                                    </lord-icon>
+                                </button>
+                            </span>
+                            <span><a href="/portfolio" style="color:white">Go to my portfolio</a></span>
+                        </div>
                     </div>
                 </nav>
                 <!--This Should Be Scrollable-->
                 <main class="row">
-                    <div class="container-fluid" id="containerone">
+                    <div class="container-fluid">
                         <section>
                             <% for(let i=0;i<2;i++){ %>
                                 <div class="row my-3 justify-content-evenly card-group">
@@ -65,7 +89,7 @@
                                                 </div>
                                                 <div class="card-footer">
                                                     <button id="button_<%=5*i+j%>" value="<%= companies[5*i+j] %>"
-                                                        class="btn btn-primary " onclick="getapi(this.value)">Know
+                                                        class="btn" onclick="getapi(this.value)">Know
                                                         more
                                                     </button>
                                                 </div>
@@ -78,7 +102,7 @@
                                                                         <lord-icon
                                                                             src="https://cdn.lordicon.com/mdgrhyca.json"
                                                                             trigger="click"
-                                                                            colors="primary:#121331,secondary:#08a88a"
+                                                                            colors="primary:#121331,secondary:
                                                                             style="width:32px;height:32px">
                                                                         </lord-icon>
                                                                     </div>
@@ -94,7 +118,7 @@
                                 <%}%>
                         </section>
                         <section id="moreinfo">
-                            <button class="btn btn-dark px-4 py-1" id="moreinfobtn" onclick="expandandcollapse()">
+                            <button class="btn btn-info px-4 py-1" id="moreinfobtn" onclick="expandandcollapse()">
                                 Show More
                             </button>
                             <br><br><br>
@@ -121,7 +145,7 @@
                                                     </div>
                                                     <div class="card-footer">
                                                         <button id="button_<%=5*i+j%>" value="<%= companies[5*i+j] %>"
-                                                            class="btn btn-primary " onclick="getapi(this.value)">Know
+                                                            class="btn" onclick="getapi(this.value)">Know
                                                             more
                                                         </button>
                                                     </div>
