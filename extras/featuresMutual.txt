@@ -14,7 +14,7 @@ AIM: INfo display of all mutual funds and corresponding stats
         Rank within category : pssbl (via absoluteReturns)
 
         Radio buttons cfor direct and regular 
-        dividen and growth in the name itself
+        dividend and growth in the name itself
 
     Secondary:
         Top Ranked via money control

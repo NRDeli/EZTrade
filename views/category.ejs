@@ -9,7 +9,8 @@
     <ol>
         <%for(let i=0;i<schemes[0].length;i++){ %>
             <li>
-                <button value="<%=schemes[1][i]%>" onclick="getapi(this.value)">
+                <button value="<%=schemes[1][i]%>" onclick="getapi(this.value)">    
+                    <!-- value is scheme code and name to be displayed is scheme name -->
                     <%=schemes[0][i]%>
                 </button>
             </li>

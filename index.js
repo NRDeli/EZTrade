@@ -35,24 +35,30 @@ app.get('/', (req, res) => {
         "union.png", "yes.png"
     ];
     const slogans = [""
-
     ]
     res.render('home', { companies: companies, logos: logos });
 });
 
 app.get('/info', async (req, res) => {
-    var sch = req.query.scheme;
-    var schemes = await schemeInfo(sch);
-    res.render('info', { schemes: schemes });
+    var sch = req.query.scheme; //to fetch from link in tab
+    var schemes = await schemeInfo(sch);    
+    // var getmul= await getMulInfo(schemes);
+   
+//monthlong
+    var monL = await yearlong(schemes[3],schemes[1]);
+    console.log("dd"+monL);
 
+    res.render('info', { schemes: schemes });
+    // res.render('info', { schemes: schemes , getmul:getmul });
 });
 
 app.get('/company/', async (req, res) => {
     var mf = req.query.mf;
     var schemes = await axiosTest(mf);
     //res.send(schemes);
+    // console.log(schemes);
     res.render('category', { schemes: schemes })
-})
+});
 
 app.listen(3000, () => {
     console.log("Listening on port 3000 . . .");
@@ -115,15 +121,14 @@ async function schemeInfo(value) {
     var isinrein = resp["ISIN Div Reinvestment"];
     var scheme = [schemename, schemecode, nav, date, schemecategory, schemetype, schemefamily, isingrowth, isinrein];
     return scheme;
-
 }
 
 async function schemeHistory(date, value) {
-    const response = await axios.get('https://latest-mutual-fund-nav.p.rapidapi.com/fetchLatestNAV', {
+    const response = await axios.get('https://latest-mutual-fund-nav.p.rapidapi.com/fetchHistoricalNAV', {
         params: {
-            //Date: '04-Jun-2021',     //2007 onwards
+            Date: date,     //2007 onwards
             //SchemeName: value.toString(),
-            SchemeCode: value.toString(),
+            SchemeCode: value,
             //SchemeType: 'Open Ended Schemes',
             //MutualFundFamily: value.toString(),
             //SchemeCategory:"Open Ended Schemes ( Equity Scheme - Large & Mid Cap Fund )"
@@ -134,17 +139,131 @@ async function schemeHistory(date, value) {
         }
     });
     var resp = response.data['0'];
-    var schemename = resp["Scheme Name"];
-    var schemecode = resp["Scheme Code"];
+
+    // var schemename = resp["Scheme Name"];
+    // var schemecode = resp["Scheme Code"];
     var nav = resp["Net Asset Value"];
     var date = resp["Date"];
-    var schemecategory = resp["Scheme Category"];
-    var schemetype = resp["Scheme Type"];
-    var schemefamily = resp["Mutual Fund Family"];
-    var isingrowth = resp["ISIN Div Payout/ISIN Growth"];
-    var isinrein = resp["ISIN Div Reinvestment"];
-    var scheme = [schemename, schemecode, nav, date, schemecategory, schemetype, schemefamily, isingrowth, isinrein];
+    // var schemecategory = resp["Scheme Category"];
+    // var schemetype = resp["Scheme Type"];
+    // var schemefamily = resp["Mutual Fund Family"];
+    // var isingrowth = resp["ISIN Div Payout/ISIN Growth"];
+    // var isinrein = resp["ISIN Div Reinvestment"];
+    // var scheme = [schemename, schemecode, nav, date, schemecategory, schemetype, schemefamily, isingrowth, isinrein];
+    var scheme =[nav,date];
     return scheme;
 
 }
+
+// to check for saturday and sunday and if yes then get friday's data
+async function isHoliday(s){
+    if (s.getDay() == 0 ){
+        // console.log(s + "dd");
+        s.setDate(s.getDate() - 2);
+        return 1;
+    }else if( s.getDay() == 6){
+        s.setDate(s.getDate() - 1);
+        return 1;
+    }
+}
+//to modify the format of the date make it  API suitable
+function format(da){
+    let monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN","JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    return da.getDate()+"-"+monthNames[da.getMonth()]+"-"+da.getFullYear();
+}
+var mulData = [];      //array to be returned
+
+async function mainF(element , Scode){
+    
+    await isHoliday(element);
+   let buffer=3;
+    while(true){    //if 2 or more holidays together...
+        try{
+            var fetchedNavs = await schemeHistory(format(element),Scode);    
+            mulData.push(fetchedNavs);
+           break;
+        } catch (error) {
+           if(buffer == 0){
+               console.log("Data not found" + element);
+               buffer =3;
+            mulData.push(new Array("NA",format(element)));
+               break;
+           }
+           element.setDate(element.getDate() - 1);
+           buffer--;
+           await isHoliday(element);
+           
+          
+       }
+   }
+       return mulData;
+}
+
+async function getMulInfo(schemes){
+    var mulD = [];      //array to be returned
+    var initDates = new Array(10);
+    //initialing of dates
+    for(let i=0;i<initDates.length;i++){
+        initDates[i]=new Date(schemes[3]);
+    }
+    initDates[0].setDate(initDates[0].getDate() -1);  //one day b4
+    initDates[1].setDate(initDates[1].getDate() -7);  //one week b4
+        
+    //months 1,3,6
+    let month = [1,3,6];
+    let j=2;
+    month.forEach(element => {
+        var mn = initDates[j].getMonth() - element; 
+        if(mn < 0){
+            mn += 12;
+            initDates[j].setFullYear(initDates[j].getFullYear() - 1);
+        }
+        
+        initDates[j++].setMonth(mn);  //one month b4
+    });
+    //1st Jan of current yr
+    initDates[5].setMonth(0); initDates[5].setDate(1);
+    
+    //years 1,2,3,5
+    j=6;
+    var yrs = [1,2,3,5];
+    yrs.forEach( element =>{
+        initDates[j].setFullYear(initDates[j++].getFullYear() - element);
+    });
+    //for loop to populate the mulD
+    for(let i=0;i<10;i++){
+        mulD = await mainF(initDates[i] , schemes[1]);
+    }    
+    
+    return mulD;
+}   
+
+// fetch year long data
+var monthL = [];
+async function yearlong(todayDate , Scode){
+    // console.log(todayDate);
+    let vs = new Date(todayDate);
+    // console.log(vs);
+    let i=1;
+    for(;i<=30;i++){
+        try{
+            vs.setDate(vs.getDate() - 1);
+            // console.log(format(vs));
+            // let dateL = format(vs);
+            // console.log(dateL);
+            var fetchedData = await schemeHistory(format(vs) , Scode);
+            // console.log(fetchedData);
+            monthL.push(fetchedData);
+        }catch(error){
+            // console.log(error);
+            continue;
+        }
+        //try to fetch data if not pssbl continue with next 
+        // to make code faster skip sat sun auto
+
+
+    }
+    return monthL;
+}
+
 
